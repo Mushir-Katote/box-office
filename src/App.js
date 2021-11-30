@@ -1,12 +1,18 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-      <h1>hello neeta kaise ho? kaisan baa?theek ba? suno na</h1>
-      <br />
-      <p>BHAAKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK</p>
-    </div>
+    <Switch>
+      <Route exact path="/">
+        this is home page
+      </Route>
+
+      <Route exact path="/starred">
+        this is starred page
+      </Route>
+      <Route>this is 404 page</Route>
+    </Switch>
   );
 }
 
