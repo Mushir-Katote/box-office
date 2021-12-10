@@ -6,8 +6,9 @@ import ShowMainData from '../components/show/ShowMainData';
 import Details from '../components/show/Details';
 import Seasons from '../components/show/Seasons';
 import Cast from '../components/show/Cast';
+import { InfoBlock, ShowPageWrapper } from './Show.Styled';
 
-function reducer(prevState, action) {
+const reducer = (prevState, action) => {
   switch (action.type) {
     case 'FETCH_SUCCESS': {
       return { isLoading: false, error: null, show: action.show };
@@ -20,7 +21,7 @@ function reducer(prevState, action) {
     default:
       return prevState;
   }
-}
+};
 
 const initialState = {
   show: null,
@@ -35,6 +36,7 @@ const Show = () => {
     reducer,
     initialState
   );
+
   useEffect(() => {
     let isMounted = true;
 
@@ -55,8 +57,6 @@ const Show = () => {
     };
   }, [id]);
 
-  console.log('show', show);
-
   if (isLoading) {
     return <div>Data is being loaded</div>;
   }
@@ -74,8 +74,9 @@ const Show = () => {
         summary={show.summary}
         tags={show.genres}
       />
+
       <div>
-        <h2>this is Details </h2>
+        <h2>Details</h2>
         <Details
           status={show.status}
           network={show.network}
@@ -84,12 +85,12 @@ const Show = () => {
       </div>
 
       <div>
-        <h2>this is Seasons</h2>
-        <Seasons Seasons={show._embedded.Seasons} />
+        <h2>Seasons</h2>
+        <Seasons seasons={show._embedded.seasons} />
       </div>
 
       <div>
-        <h2>this is Cast</h2>
+        <h2>Cast</h2>
         <Cast cast={show._embedded.cast} />
       </div>
     </div>
